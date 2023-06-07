@@ -18,7 +18,7 @@ class MaterielTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'type'=> fake()->in_array
+            'type'=> fake()->unique()->randomElement(['ordinateur', 'routeur', 'serveur', 'imprimante', 'switch']),
         ];
     }
 }

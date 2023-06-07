@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Marque;
+use App\Models\Modèle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,16 +18,22 @@ class MaterielFactory extends Factory
      */
     public function definition(): array
     {
+        $materielType = fake()->numberBetween(1, 5);
+        $marque = Marque::where('materiel_type', $materielType)->inRandomOrder()->first();
+        $modele = Modèle::where('marque', $marque->id)->inRandomOrder()->first();
+        if($modele == null)$modele = 1;
+
+
         return [
-            'materiel_type' => '1',
-            'marque' => '1',
-            'modèle' => '1',
-            'N_serie' => '25d15e3f',
-            'N_Inventair' => 'fs652s48',
-            'affectation' => '1',
-            'caractéristiques' => '16 ram',
-            'date_aqusition' => '2003-05-08',
-            'état' => 'bien',
+            'materiel_type' => $materielType,
+            'marque' => $marque,
+            'modèle' => $modele,
+            'N_serie' => fake()->numerify('NS######'),
+            'N_Inventair' => fake()->numerify('NI######'),
+            'affectation' => fake()->numberBetween(1,8),
+            'caractéristiques' => fake()->numerify('ram: ## GB'),
+            'date_aqusition' => fake()->date(),
+            'état' => fake()->randomElement(['très bon','bien','moyen','mauvais']),
 
         ];
     }

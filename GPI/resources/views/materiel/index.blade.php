@@ -1,5 +1,13 @@
 @extends('layout')
-
+@section('headScripts')
+    <style>
+        .imagg{
+        object-fit: cover;
+            width: 100px;
+            height: auto;
+        }
+    </style>
+@endsection
 @section('content')
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -53,33 +61,28 @@
                                         <thead>
                                             <tr>
                                                 <th>type</th>
-                                                <th>materiel type</th>
-                                                <th>materiel marque</th>
-                                                <th class="text-right">division</th>
-                                                <th>voir</th>
-                                                <th>modiffier</th>
-                                                <th>suprumer</th>
+                                                <th>marque</th>
+                                                <th>Modèle</th>
+                                                <th>division</th>
+                                                <th class="text-right"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($materiels as $materiel)
                                             <tr>
 
-                                                        <td><img src="{{ url('imgs/') }}/{{ $materiel->materielType->type }}.png" alt=""></td>
-                                                        <td>{{ $materiel->materielType->type }}</td>
+                                                        <td><img class="imagg" src="{{ url('imgs/') }}/{{ $materiel->materielType->type }}.png" alt=""></td>
                                                         <td>{{ $materiel->materielMarque->marque }}</td>
-                                                        <td class="text-right">{{ $materiel->materielAffectation->division }}</td>
-                                                        <td><a href="{{ route('Materiel.show',$materiel) }}">
-                                                            <button class="btn btn-outline-primary">voir</button>
-                                                        </a></td>
-                                                        <td>
-                                                            <a href="{{ route('Materiel.edit',$materiel->id) }}">
-                                                                <button class="btn btn-warning">modiffier</button>
+                                                        <td>{{ $materiel->materielModèle->Modèle }}</td>
+                                                        <td>{{ $materiel->materielAffectation->division }}</td>
+                                                        <td class="text-right"><a href="{{ route('Materiel.show',$materiel) }}">
+                                                            <button class="btn btn-outline-primary"><i class="fa fa-eye" style="transform: scale(1.3)"></i></button>
                                                             </a>
-                                                        </td>
-                                                        <td>
+                                                            <a href="{{ route('Materiel.edit',$materiel->id) }}">
+                                                                <button class="btn btn-warning"><i class="fa fa-edit" style="transform: scale(1.3)"></i></button>
+                                                            </a>
                                                             <a href="{{ route('materiel.drop',$materiel->id) }}">
-                                                            <button class="btn btn-danger">sup</button>
+                                                            <button class="btn btn-danger"><i class="fa fa-trash-o" style="transform: scale(1.3)"></i></button>
                                                             </a>
                                                         </td>
 
@@ -88,6 +91,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{ $materiels->links() }}
                             </div>
                         </div>
                     </div>

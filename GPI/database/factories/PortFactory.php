@@ -17,11 +17,11 @@ class PortFactory extends Factory
     public function definition(): array
     {
         return [
-            'port' => 'Eternet',
-            'mac_address' => '05:c3:f1:23:50:',
-            'ip_address' => '192.168.0.1',
-            'masque_reseau' => '255.255.255.0',
-            'material' => '1'
+            'port' => fake()->sentence(2),
+            'mac_address' => fake()->unique()->macAddress(),
+            'ip_address' => fake()->ipv4(),
+            'masque_reseau' => fake()->randomElement(['255.255.255.0', '255.255.0.0', '255.0.0.0','255.255.255.128','255.255.255.192','255.255.128.0','255.255.192.0','255.255.255.252']),
+            'material' => fake()->numberBetween(1, 5000)
         ];
     }
 }

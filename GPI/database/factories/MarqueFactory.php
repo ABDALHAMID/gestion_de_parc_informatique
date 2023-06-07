@@ -17,8 +17,8 @@ class MarqueFactory extends Factory
     public function definition(): array
     {
         return [
-            'marque' => 'hp',
-            'materiel_type' => 1
+            'marque' => fake()->unique()->company(),
+            'materiel_type' => fake()->numberBetween(1,5)
         ];
     }
 }

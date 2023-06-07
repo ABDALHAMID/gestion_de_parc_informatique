@@ -16,9 +16,10 @@ class ModèleFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'Modèle'=> 'kdi524',
-            'marque'=> '1'
+            'Modèle' => fake()->unique()->bothify('??###'),
+            'marque' => fake()->numberBetween(1, 500)
         ];
     }
 }

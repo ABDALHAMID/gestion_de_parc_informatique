@@ -35,6 +35,36 @@
             top: 0;
             left: 90%;
         }
+        .materiel-logo{
+            position: fixed;
+            top: 80px;
+            right: 150px;
+            width: 200px;
+            height: 200px;
+            z-index: 0;
+
+        }
+        .materiel-logo img{
+            position: absolute;
+            z-index: -3;
+            object-fit: fill;
+
+            transition: .7s ease;
+        }
+        .materiel-logo h4{
+            position: absolute;
+            z-index: -4;
+            font-size: 2rem;
+            transform: translateY(50px);
+        }
+        .materiel-logo:hover > img{
+            transform: translateX(-250px);
+        }
+        .td-style{
+            background-color: #e5e5e5;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
         integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
@@ -46,7 +76,11 @@
         <div class="section__content section__content--p30">
             <div class="container-fluid">
                 @include('materiel.back')
-                <div class="row m-b-20">
+                <div class="materiel-logo">
+                    <h4>{{ $materiel->materielType->type }}</h4>
+                    <img src="{{ url('imgs/') }}/{{ $materiel->materielType->type }}.png" alt="">
+                </div>
+                <div class="row m-b-20 m-t-50">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left m-r-20">
                             <button onclick="getQRcode()" class="btn btn-outline-secondary m-9" style="width: 3rem; height: 3rem;"><i class="fa fa-qrcode" style="transform: scale(2.5); margin: auto;"></i></button>
@@ -112,10 +146,10 @@
                             <table class="table table-data2">
                                 <thead>
                                     <tr>
-                                        <th>port</th>
-                                        <th>mac address</th>
-                                        <th>ip address</th>
-                                        <th>masque reseaux</th>
+                                        <th class="td-style">port</th>
+                                        <th class="td-style">mac address</th>
+                                        <th class="td-style">ip address</th>
+                                        <th class="td-style">masque reseaux</th>
                                     </tr>
                                 </thead>
                                 <tbody>

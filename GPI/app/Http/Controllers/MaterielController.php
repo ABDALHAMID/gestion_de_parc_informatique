@@ -9,7 +9,8 @@ use App\Models\Marque;
 use App\Models\Modèle;
 use App\Models\Port;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 use function PHPSTORM_META\type;
 
@@ -22,7 +23,7 @@ class MaterielController extends Controller
             'materielMarque:id,marque',
             'materielModèle:id,Modèle',
             'materielAffectation:id,division'
-        )->get();
+        )->paginate(10);
 
         $matTypes = MaterielType::all()->pluck('type');
         $nomMateriels = [];
@@ -151,8 +152,8 @@ class MaterielController extends Controller
         $materiel = Materiel::findOrFail($materielID);
         $ports = Materiel::findOrFail($materielID)->ports;
         $type = MaterielType::query()->where('id', $materiel->materiel_type)->pluck('type')->get(0);
-        $marque = Marque::query()->where('materiel_type', $materiel->marque)->pluck('marque')->get(0);
-        $modele = Modèle::query()->where('marque', $materiel->modèle)->pluck('Modèle')->get(0);
+        $marque = Marque::query()->where('id', $materiel->marque)->pluck('marque')->get(0);
+        $modele = Modèle::query()->where('id', $materiel->modèle)->pluck('Modèle')->get(0);
         $affictation = Division::query()->where('id', $materiel->affectation)->pluck('division')->get(0);
         return view('materiel.showMateriel', compact('materiel'))
             ->with('type', $type)
@@ -172,7 +173,7 @@ class MaterielController extends Controller
         // Retrieve the search parameters from the request
         $materielType = $request->input('materiel_type');
         $materielMarque = $request->input('marque');
-        $materielModele = $request->input('modele');
+        $materielModele = $request->input('modèle');
         $materielNSerie = $request->input('N_serie');
         $materielNInventair = $request->input('N_Inventair');
         $materielcarac = $request->input('caractéristiques');
@@ -190,30 +191,61 @@ class MaterielController extends Controller
                 $query->where('marque', $materielMarque);
             })
             ->when($materielModele, function ($query, $materielModele) {
-                $query->where('modele', $materielModele);
+                $query->where('modèle', $materielModele);
             })
             ->when($materielNSerie, function ($query, $materielNSerie) {
-                $query->where('n_serie', 'LIKE', '%' .  $materielNSerie. '%');
+                $query->where('n_serie', 'LIKE', '%' .  $materielNSerie . '%');
             })
             ->when($materielNInventair, function ($query, $materielNInventair) {
-                $query->where('n_inventair', 'LIKE', '%' .  $materielNInventair. '%');
+                $query->where('n_inventair', 'LIKE', '%' .  $materielNInventair . '%');
             })
             ->when($materielAffectation, function ($query, $materielAffectation) {
                 $query->where('affectation', $materielAffectation);
             })
             ->when($materielcarac, function ($query, $materielcarac) {
-                $query->where('caractéristiques', 'LIKE', '%' .  $materielcarac. '%');
+                $query->where('caractéristiques', 'LIKE', '%' .  $materielcarac . '%');
             })
             ->when($materielDateAqusition, function ($query, $materielDateAqusition) {
                 $query->where('date_aqusition', $materielDateAqusition);
             })
             ->when($materielEtat, function ($query, $materielEtat) {
                 $query->where('état', $materielEtat);
-            })
-            // ... Apply other search filters
-            ->get();
-            //$view = view('materiel.list', compact('materiels'))->render();
-            return view('materiel.list', ['materiels'=> $materiels]);
-            //return response()->json(['html' => $view]);
+            })->paginate(200);
+        //$view = view('materiel.list', compact('materiels'))->render();
+        return view('materiel.list', ['materiels' => $materiels]);
+        //return response()->json(['html' => $view]);
+    }
+
+    public function Monitoring()
+    {
+        $routerID = MaterielType::query()->where('type', 'routeur')->pluck('id')->get(0);
+        $materiels = Materiel::query()->where('materiel_type', $routerID)
+        ->with(
+            'materielMarque:id,marque',
+            'materielModèle:id,Modèle',
+            'materielAffectation:id,division',
+            'ports'
+        )->paginate(5);
+
+        return view('materiel.monitoring')
+        ->with('materiels', $materiels);
+    }
+
+    public function checkPing(Request $request)
+    {
+        $host = $request->input('host'); // Replace with the host or IP address you want to ping
+
+        $pingCommand = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? 'ping -n 1 ' : 'ping -c 1 ';
+        $pingCommand .= escapeshellarg($host);
+
+        exec($pingCommand, $output, $result);
+
+        if ($result === 0) {
+            // Ping was successful
+            return response()->json(['status' => true]);
+        } else {
+            // Ping failed
+            return response()->json(['status' => false]);
+        }
     }
 }

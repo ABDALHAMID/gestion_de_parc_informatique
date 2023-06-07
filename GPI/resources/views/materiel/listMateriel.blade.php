@@ -6,6 +6,11 @@
             justify-content: space-between;
             align-items: center;
         }
+        .imagg{
+        object-fit: cover;
+            width: 100px;
+            height: auto;
+        }
     </style>
 @endsection
 @section('content')
@@ -161,8 +166,11 @@
                                 </thead>
                                 <tbody id="materielList">
                                 </tbody>
+
                             </table>
+
                         </div>
+                        <div id="linksHere"></div>
                     </div>
                 </div>
             </div>
@@ -254,6 +262,8 @@
                     cache: false,
                     success: function(response) {
                         $('#materielList').html(response);
+                        links = response.document.$('#links');
+                        $('#linksHere').html(links);
                     },
                     error: function(err) {
                         console.log('error');
@@ -271,13 +281,6 @@
             $('#N_Inventair').on('keyup', function() {
                 updateMaterialList();
             });
-
-            // function materielLister(result) {
-            //     document.getElementById('materielList').innerHTML = '';
-            //     for (let i = 0; i < result.materiels.length; i++) {
-
-            //     }
-            // }
 
             updateMaterialList();
 

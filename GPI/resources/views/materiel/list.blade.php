@@ -2,12 +2,19 @@
 @foreach ($materiels as $materiel)
     <tr>
         <td>
-            <img src="{{ url('imgs/') }}/{{ $materiel->materielType->type }}.png"
+            <div class="row">
+                <img class="imagg" src="{{ url('imgs/') }}/{{ $materiel->materielType->type }}.png"
                 alt="{{ $materiel->materielType->type }}">
+            </div>
+            <div class="row">
+                <span>
+                    {{ $materiel->materielType->type }}
+                </span>
+            </div>
         </td>
-        <td>{{ $materiel->materielType->type }}</td>
         <td>{{ $materiel->materielMarque->marque }}</td>
-        <td class="text-right">{{ $materiel->materielAffectation->division }}</td>
+        <td>{{ $materiel->materielModele }}</td>
+        <td>{{ $materiel->materielAffectation->division }}</td>
         <td>
             <a href="{{ route('Materiel.show', $materiel) }}">
                 <button class="btn btn-outline-primary">voir</button>
@@ -25,4 +32,8 @@
         </td>
     </tr>
 @endforeach
+
+
+
+
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModèleController;
 use App\Http\Controllers\PortController;
 use App\Models\Port;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,8 @@ Route::resource('Materiel', MaterielController::class);
 Route::resource('PortController', PortController::class);
 
 Route::put('/materiel/{materielid}/modify', [MaterielController::class,'modify'])->name('materiel.modify');
+Route::get('/checkPing', [MaterielController::class, 'checkPing'])->name('/checkPing');
+Route::get('/monitoring', [MaterielController::class, 'Monitoring'])->name('monitoring');
 
 Route::get('/listMateriel', [MaterielController::class, 'listMateriel'])->name('listMateriel');
 Route::post('/search', [MaterielController::class, 'search'])->name('materiel.search');

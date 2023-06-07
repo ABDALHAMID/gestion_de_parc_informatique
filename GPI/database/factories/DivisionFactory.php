@@ -17,7 +17,7 @@ class DivisionFactory extends Factory
     public function definition(): array
     {
         return ([
-            'division'=> 'RH'
+            'division'=> fake()->unique()->randomElement(['RH', 'DBR', 'Administration', 'informatique', 'Management', 'RD', 'Transport et Logistique', 'Comptabilité']),
         ]);
     }
 }
