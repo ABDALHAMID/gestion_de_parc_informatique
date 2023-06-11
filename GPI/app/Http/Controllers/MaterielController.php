@@ -7,6 +7,7 @@ use App\Models\MaterielType;
 use App\Models\Division;
 use App\Models\Marque;
 use App\Models\Modèle;
+use Illuminate\Support\Facades\DB;
 use App\Models\Port;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -210,7 +211,7 @@ class MaterielController extends Controller
             })
             ->when($materielEtat, function ($query, $materielEtat) {
                 $query->where('état', $materielEtat);
-            })->paginate(200);
+            })->paginate(250);
         //$view = view('materiel.list', compact('materiels'))->render();
         return view('materiel.list', ['materiels' => $materiels]);
         //return response()->json(['html' => $view]);
@@ -220,15 +221,15 @@ class MaterielController extends Controller
     {
         $routerID = MaterielType::query()->where('type', 'routeur')->pluck('id')->get(0);
         $materiels = Materiel::query()->where('materiel_type', $routerID)
-        ->with(
-            'materielMarque:id,marque',
-            'materielModèle:id,Modèle',
-            'materielAffectation:id,division',
-            'ports'
-        )->paginate(5);
+            ->with(
+                'materielMarque:id,marque',
+                'materielModèle:id,Modèle',
+                'materielAffectation:id,division',
+                'ports'
+            )->paginate(5);
 
         return view('materiel.monitoring')
-        ->with('materiels', $materiels);
+            ->with('materiels', $materiels);
     }
 
     public function checkPing(Request $request)
@@ -247,5 +248,139 @@ class MaterielController extends Controller
             // Ping failed
             return response()->json(['status' => false]);
         }
+    }
+    public function statistique()
+    {
+
+        $years = Materiel::distinct()
+            ->orderBy(DB::raw('YEAR(date_aqusition)'))
+            ->pluck(DB::raw('YEAR(date_aqusition)'))
+            ->map(function ($year) {
+                return strval($year);
+            })
+            ->all();
+
+
+        $materialCountsByYear = Materiel::selectRaw('YEAR(date_aqusition) AS year')
+            ->selectRaw('materiel_type')
+            ->selectRaw('COUNT(*) as count')
+            ->with('materielType:id,type')
+            ->groupBy('year', 'materiel_type')
+            ->orderBy('year')
+            ->get();
+
+        $data = [];
+
+        foreach ($materialCountsByYear as $materialCount) {
+            $year = $materialCount->year;
+            $count = $materialCount->count;
+            $type = $materialCount->materielType->type;
+
+            if (!isset($data[$type])) {
+                $data[$type] = [];
+            }
+
+            $data[$type][$year] = $count;
+        }
+
+        $division = Division::all()->pluck('division');
+
+        $materialCountsByDivision = Materiel::selectRaw('affectation')
+            ->selectRaw('materiel_type')
+            ->selectRaw('COUNT(*) as count')
+            ->with('materielType:id,type')
+            ->with('materielAffectation:id,division')
+            ->groupBy('affectation', 'materiel_type')
+            ->get();
+
+        $data1 = [];
+
+        foreach ($materialCountsByDivision as $materialCount) {
+            $affectation = $materialCount->materielAffectation->division;
+            $count = $materialCount->count;
+            $type = $materialCount->materielType->type;
+
+            if (!isset($data1[$type])) {
+                $data1[$type] = [];
+            }
+
+            $data1[$type][$affectation] = $count;
+        }
+
+
+        $materialCountsBytype = Materiel::selectRaw('materiel_type')
+            ->selectRaw('COUNT(*) as count')
+            ->with('materielType:id,type')
+            ->groupBy('materiel_type')
+            ->get();
+
+        $data2 = [];
+
+        foreach ($materialCountsBytype as $materialCount) {
+            $count = $materialCount->count;
+            $type = $materialCount->materielType->type;
+
+            if (!isset($data2[$type])) {
+                $data2[$type] = [];
+            }
+
+            $data2[$type] = $count;
+        }
+
+        $materialCountsByEtat = Materiel::selectRaw('état')
+            ->selectRaw('COUNT(*) as count')
+            ->groupBy('état')
+            ->get();
+
+        $data3 = [];
+
+        foreach ($materialCountsByEtat as $materialCount) {
+            $count = $materialCount->count;
+            $etat = $materialCount->état;
+
+            if (!isset($data3[$etat])) {
+                $data3[$etat] = [];
+            }
+
+            $data3[$etat] = $count;
+        }
+
+        $materialCountsByMarkAndModele = Materiel::selectRaw('materiel_type')
+            ->selectRaw('marque')
+            ->selectRaw('modèle')
+            ->selectRaw('COUNT(*) as count')
+            ->with(
+                'materielType:id,type',
+                'materielMarque:id,marque',
+                'materielModèle:id,Modèle'
+            )
+            ->groupBy('materiel_type', 'marque', 'modèle')
+            ->get();
+
+        $data4 = [];
+
+        foreach ($materialCountsByMarkAndModele as $materialCount) {
+            $type = $materialCount->materielType->type;
+            $marque = $materialCount->materielMarque->marque;
+            $modele = $materialCount->materielModèle->Modèle;
+            $count = $materialCount->count;
+
+            if (!isset($data4[$type])) {
+                $data4[$type] = [];
+            }
+            if (!isset($data4[$type][$marque])) {
+                $data4[$type][$marque] = [];
+            }
+
+            $data4[$type][$marque][$modele] = $count;
+        }
+        return view('materiel.statistique')
+            ->with('years', $years)
+            ->with('data', $data)
+            ->with('data1', $data1)
+            ->with('data2', $data2)
+            ->with('data3', $data3)
+            ->with('data4', $data4)
+            ->with('division', $division);
     }
 }

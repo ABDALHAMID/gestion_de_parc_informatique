@@ -35,6 +35,10 @@ Route::get('/listMateriel', [MaterielController::class, 'listMateriel'])->name('
 Route::post('/search', [MaterielController::class, 'search'])->name('materiel.search');
 
 
+
+Route::get('/statistique', [MaterielController::class, 'statistique'])->name('statistique');
+
+
 Route::get('/marques', [MarqueController::class, 'getMarquesByMaterielType']);
 Route::get('/modeles', [ModèleController::class, 'getModelesByMarque']);
 Route::delete('/port/{portID}/drop', [PortController::class, 'drop'])->name('port.drop');

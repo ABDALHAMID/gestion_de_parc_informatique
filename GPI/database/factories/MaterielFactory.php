@@ -32,7 +32,7 @@ class MaterielFactory extends Factory
             'N_Inventair' => fake()->numerify('NI######'),
             'affectation' => fake()->numberBetween(1,8),
             'caractéristiques' => fake()->numerify('ram: ## GB'),
-            'date_aqusition' => fake()->date(),
+            'date_aqusition' => fake()->dateTimeBetween('2000-01-01', 'now')->format('Y-m-d'),
             'état' => fake()->randomElement(['très bon','bien','moyen','mauvais']),
 
         ];

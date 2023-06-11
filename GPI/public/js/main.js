@@ -11,7 +11,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: ['1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2025'],
           type: 'line',
           datasets: [{
             data: [78, 81, 80, 45, 34, 12, 40],
@@ -687,18 +687,18 @@
 
   try {
     //Sales chart
-    var ctx = document.getElementById("sales-chart");
+    var ctx = document.getElementById("materielDate");
     if (ctx) {
       ctx.height = 150;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016"],
+          labels: ['1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2025'],
           type: 'line',
           defaultFontFamily: 'Poppins',
           datasets: [{
-            label: "Foods",
-            data: [0, 30, 10, 120, 50, 63, 10],
+            label: "ordinateur",
+            data: [0, 30, 10, 120, 50, 63, 10, 506, 1008, 69, 1],
             backgroundColor: 'transparent',
             borderColor: 'rgba(220,53,69,0.75)',
             borderWidth: 3,
@@ -707,8 +707,18 @@
             pointBorderColor: 'transparent',
             pointBackgroundColor: 'rgba(220,53,69,0.75)',
           }, {
+            label: "imprimante",
+            data: [0, 2, 10, 120, 10, 4, 45, 245, 122, 7, 150],
+            backgroundColor: 'transparent',
+            borderColor: 'rgba(45,53,255,0.75)',
+            borderWidth: 3,
+            pointStyle: 'circle',
+            pointRadius: 5,
+            pointBorderColor: 'transparent',
+            pointBackgroundColor: 'rgba(45,53,255,0.75)',
+          }, {
             label: "Electronics",
-            data: [0, 50, 40, 80, 40, 79, 120],
+            data: [0, 50, 40, 80, 40, 79, 120, 15, 178, 162, 26],
             backgroundColor: 'transparent',
             borderColor: 'rgba(40,167,69,0.75)',
             borderWidth: 3,
@@ -1279,8 +1289,8 @@
         window.location.href = url;
       }
     });
-  
-  
+
+
   })(jQuery);
 (function ($) {
   // USE STRICT
@@ -1311,7 +1321,7 @@
 
   // Europe Map
   try {
-    
+
     var vmap1 = $('#vmap1');
     if(vmap1[0]) {
       vmap1.vectorMap( {
@@ -1330,7 +1340,7 @@
 
   // USA Map
   try {
-    
+
     var vmap2 = $('#vmap2');
 
     if(vmap2[0]) {
@@ -1360,7 +1370,7 @@
 
   // Germany Map
   try {
-    
+
     var vmap3 = $('#vmap3');
     if(vmap3[0]) {
       vmap3.vectorMap( {
@@ -1375,14 +1385,14 @@
         }
       });
     }
-    
+
   } catch (error) {
     console.log(error);
   }
-  
+
   // France Map
   try {
-    
+
     var vmap4 = $('#vmap4');
     if(vmap4[0]) {
       vmap4.vectorMap( {
@@ -1421,10 +1431,10 @@
   } catch (error) {
     console.log(error);
   }
-  
+
   // Brazil Map
   try {
-    
+
     var vmap6 = $('#vmap6');
     if(vmap6[0]) {
       vmap6.vectorMap( {
@@ -1481,7 +1491,7 @@
   try {
     var jscr1 = $('.js-scrollbar1');
     if(jscr1[0]) {
-      const ps1 = new PerfectScrollbar('.js-scrollbar1');      
+      const ps1 = new PerfectScrollbar('.js-scrollbar1');
     }
 
     var jscr2 = $('.js-scrollbar2');
@@ -1519,7 +1529,7 @@
   // USE STRICT
   "use strict";
 
-  // Dropdown 
+  // Dropdown
   try {
     var menu = $('.js-item-menu');
     var sub_menu_is_showed = -1;
@@ -1527,7 +1537,7 @@
     for (var i = 0; i < menu.length; i++) {
       $(menu[i]).on('click', function (e) {
         e.preventDefault();
-        $('.js-right-sidebar').removeClass("show-sidebar");        
+        $('.js-right-sidebar').removeClass("show-sidebar");
         if (jQuery.inArray(this, menu) == sub_menu_is_showed) {
           $(this).toggleClass('show-dropdown');
           sub_menu_is_showed = -1;
@@ -1578,7 +1588,7 @@
       right_sidebar.removeClass("show-sidebar");
 
     });
- 
+
 
   // Sublist Sidebar
   try {
@@ -1646,7 +1656,7 @@
   "use strict";
 
   try {
-    
+
     $('[data-toggle="tooltip"]').tooltip();
 
   } catch (error) {
@@ -1664,7 +1674,7 @@
         $(this).parent().parent().parent().toggleClass('show-chat-box');
       });
     });
-    
+
 
   } catch (error) {
     console.log(error);

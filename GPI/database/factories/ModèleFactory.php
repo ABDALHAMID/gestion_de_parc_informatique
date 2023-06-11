@@ -19,7 +19,7 @@ class ModèleFactory extends Factory
 
         return [
             'Modèle' => fake()->unique()->bothify('??###'),
-            'marque' => fake()->numberBetween(1, 500)
+            'marque' => fake()->numberBetween(1, 100)
         ];
     }
 }

@@ -1185,7 +1185,6 @@ section {
 .header-desktop {
     background: #b1b1b173;
     backdrop-filter: blur(7px);
-    filter: blur(2px);
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
@@ -1214,10 +1213,11 @@ section {
 
 @media (max-width: 991px) {
     .header-desktop {
+        border-top: 2px solid #64616179;
         position: relative;
         top: 0;
         left: 0;
-        height: 170px;
+        height: 20px;
     }
 }
 

@@ -3,7 +3,7 @@
 
     <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="{{ route('statistique') }}">
                                 <i class="fas fa-chart-bar"></i>Statistique</a>
                         </li>
                         <li>
@@ -93,11 +93,11 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow" href="{{ route('Materiel.index') }}">
-                                <i class="bx bxl-dribbble"></i>Dashboard
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="{{ route('statistique') }}">
                                 <i class="fas fa-chart-bar"></i>Statistique</a>
                         </li>
                         <li>
@@ -164,6 +164,8 @@
 
     <!-- Main JS-->
     <script src="{{ url('js/main.js') }}"></script>
+
+    @yield('bottomScripts')
 
 </body>
 

@@ -6,10 +6,29 @@
             justify-content: space-between;
             align-items: center;
         }
-        .imagg{
-        object-fit: cover;
+
+        .imagg {
+            object-fit: cover;
             width: 100px;
             height: auto;
+        }
+
+        td {
+            max-width: 210px;
+            max-height: 210px;
+            overflow: auto;
+        }
+        td::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        td::-webkit-scrollbar-thumb {
+            background: #3a4c618a;
+            border-radius: 25px;
+        }
+        td::-webkit-scrollbar-thumb:hover {
+            background: #3a4c61af;
+            border-radius: 20px;
         }
     </style>
 @endsection
@@ -156,21 +175,22 @@
                                 <thead>
                                     <tr>
                                         <th>type</th>
-                                        <th>materiel type</th>
-                                        <th>materiel marque</th>
-                                        <th class="text-right">division</th>
-                                        <th>voir</th>
-                                        <th>modiffier</th>
-                                        <th>suprumer</th>
+                                        <th>marque</th>
+                                        <th>modèle</th>
+                                        <th>N° Serie</th>
+                                        <th>N° Inventair</th>
+                                        <th>affectation</th>
+                                        <th>caractéristiques</th>
+                                        <th>date d'Aqusition</th>
+                                        <th>état </th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody id="materielList">
                                 </tbody>
 
                             </table>
-
                         </div>
-                        <div id="linksHere"></div>
                     </div>
                 </div>
             </div>
@@ -250,6 +270,7 @@
         });
     </script>
     <script>
+        var r = ''
         $(document).ready(function() {
             // Function to update the material list
             function updateMaterialList() {
@@ -258,12 +279,10 @@
                     type: 'POST',
                     url: "{{ route('materiel.search') }}",
                     data: formData,
-                    datatype:'html',
+                    datatype: 'html',
                     cache: false,
                     success: function(response) {
                         $('#materielList').html(response);
-                        links = response.document.$('#links');
-                        $('#linksHere').html(links);
                     },
                     error: function(err) {
                         console.log('error');
