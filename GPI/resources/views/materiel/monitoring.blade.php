@@ -121,10 +121,10 @@
                                             @foreach ($m->ports as $port)
                                                 <div class="port port-info">
                                                     <div class="cercle"></div>
-                                                    <div id="port_stats">{{ $port->port }} est <span id="s">status</span>
+                                                    <div id="port_stats">{{ $port->port }}: <span id="s">status</span>
                                                     </div>
                                                     <div>mac: {{ $port->mac_address }}</div>
-                                                    <div class="desc">ip: <span id="ip">{{ $port->ip_address }}</span></div>
+                                                    <div class="desc">ip: <a href="{{ $port->ip_address }}"><span id="ip">{{ $port->ip_address }}</span></a></div>
                                                     <div>masque: {{ $port->masque_reseau }}</div>
                                                 </div>
                                                 <tr class="spacer"></tr>
@@ -148,7 +148,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            var timer = setInterval(checkPings, 15000);
+            var timer = setInterval(checkPings, 30000);
             checkPings();
 
             function checkPings() {
@@ -161,9 +161,6 @@
                         const port = ports[portID];
                         const cercle = $(port).find('div.cercle');
                         const ip = $(port).find('span#ip')[0].textContent;
-                        var span = $(port).find('span#s');
-                        console.log(ip, '____>', span);
-                        span.html('en cour de connection...');
                         $.ajax({
                             type: 'GET',
                             url: "{{ route('/checkPing') }}",
@@ -178,7 +175,7 @@
                                     status = true;
                                     materielStatuse.style.backgroundColor = '#00ff00';
                                     cercle.css('background-color', '#00ff00');
-                                    span.html('connecter');
+                                    span.html('est connecter');
                                 } else {
                                     if (!status) {
                                         materielStatuse.style.backgroundColor = '#ff0000';
@@ -191,7 +188,6 @@
                                 var span = $(port).find('span#s');
                                 span.html('CONNECTION ERROR:' + error.code);
                                 console.log(error);
-                                // Handle error response
                             }
                         })
 
