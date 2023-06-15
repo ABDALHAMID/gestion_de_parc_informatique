@@ -16,10 +16,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
-                                    <h2 class="title-1">overview</h2>
+                                    <h2 class="title-1">Aperçu général</h2>
                                     <a href="{{ route('Materiel.create') }}">
                                     <button class="au-btn au-btn-icon au-btn--blue" >
-                                        <i class="zmdi zmdi-plus"></i>cree un materiel</button></a>
+                                        <i class="zmdi zmdi-plus"></i>créer un nouveau matériel</button></a>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">list de materiels</h2>
+                                <h2 class="title-1 m-b-25">list des matériels</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>

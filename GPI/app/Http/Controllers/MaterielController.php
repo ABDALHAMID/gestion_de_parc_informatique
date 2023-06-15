@@ -24,7 +24,7 @@ class MaterielController extends Controller
             'materielMarque:id,marque',
             'materielModèle:id,Modèle',
             'materielAffectation:id,division'
-        )->paginate(10);
+        )->paginate(20);
 
         $matTypes = MaterielType::all()->pluck('type');
         $nomMateriels = [];

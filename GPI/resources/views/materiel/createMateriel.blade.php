@@ -21,13 +21,7 @@
                     </div>
                 @endif
 
-                <div class="row">
-                    <div class="col-lg-12 margin-tb">
-                        <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('Materiel.index') }}"> Back</a>
-                        </div>
-                    </div>
-                </div>
+                @include('materiel.back')
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -40,11 +34,11 @@
                                     <!-- materiel type -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materiel_type" class=" form-control-label">materiel Type</label>
+                                            <label for="materiel_type" class=" form-control-label">type material</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="materiel_type" id="materielType" class="form-control">
-                                                <option value="" selected="true" hidden disabled>Select Type</option>
+                                                <option value="" selected="true" hidden disabled>Sélectionner le type</option>
                                                 @foreach($matType as $mattype)
                                                     <option value="{{ $mattype->id }}">{{ $mattype->type }}</option>
                                                 @endforeach
@@ -55,11 +49,11 @@
                                     <!-- materiel marque -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materielMarque" class=" form-control-label">materiel marque</label>
+                                            <label for="materielMarque" class=" form-control-label">marque de matériel</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="marque" id="materielMarque" class="form-control">
-                                                <option value="" selected="true" hidden disabled>Select marque</option>
+                                                <option value="" selected="true" hidden disabled>Sélectionner la marque</option>
 
                                             </select>
                                         </div>
@@ -68,11 +62,11 @@
                                     <!-- materiel modele -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materielModele" class=" form-control-label">materiel modele</label>
+                                            <label for="materielModele" class=" form-control-label">modèle de matériel</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="modèle" id="materielModele" class="form-control">
-                                                <option value="" selected="true" hidden disabled>Select modele</option>
+                                                <option value="" selected="true" hidden disabled>Sélectionner le modèle</option>
                                             </select>
                                         </div>
                                     </div>
@@ -83,30 +77,28 @@
                                             <label for="NSerie" class=" form-control-label">N° Serie</label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" maxlength="255" id="N_serie" name="N_serie" placeholder="N_serie" class="form-control">
-                                            <small class="form-text text-muted">1000123456789</small>
+                                            <input type="text" maxlength="255" id="N_serie" name="N_serie" placeholder="########" class="form-control">
                                         </div>
                                     </div>
 
                                     <!-- N° Inventair -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="N_Inventair" class=" form-control-label">N° Inventair</label>
+                                            <label for="N_Inventair" class=" form-control-label">N° Inventaire</label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="N_Inventair" maxlength="255" name="N_Inventair" placeholder="N° Inventair" class="form-control">
-                                            <small class="form-text text-muted">1000123456789</small>
+                                            <input type="text" id="N_Inventair" maxlength="255" name="N_Inventair" placeholder="#########" class="form-control">
                                         </div>
                                     </div>
 
                                     <!-- affectation -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="affectationID" id="affectation" class=" form-control-label">affectation</label>
+                                            <label for="affectationID" id="affectation" class=" form-control-label">affectation au service</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="affectation" id="affectationID" class="form-control">
-                                                <option value="" selected="true" hidden disabled>Select division</option>
+                                                <option value="" selected="true" hidden disabled>Sélectionner la division</option>
                                                 @foreach($afictations as $afictation)
                                                     <option value="{{ $afictation->id }}">{{ $afictation->division }}</option>
                                                 @endforeach

@@ -26,7 +26,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                modiffier : <strong> {{ $type }}</strong>
+                                modifier : <strong> {{ $type }}</strong>
                             </div>
                             <div class="card-body card-block">
                                 <form id="createForm" action="{{ route('materiel.modify', $materiel[0]->id) }}" method="post" class="form-horizontal">

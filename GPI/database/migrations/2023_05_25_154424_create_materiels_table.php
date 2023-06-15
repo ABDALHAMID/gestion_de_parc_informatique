@@ -31,9 +31,9 @@ return new class extends Migration
                   ->constrained(table: 'divisions')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
-            $table->string('caractéristiques');
+            $table->text('caractéristiques');
             $table->date('date_aqusition');
-            $table->enum('état',['très bon','bien','moyen','mauvais']);
+            $table->enum('état',['très bon','bien','moyen','mauvais', 'hors service', 'mantenance']);
             $table->timestamps();
         });
     }
