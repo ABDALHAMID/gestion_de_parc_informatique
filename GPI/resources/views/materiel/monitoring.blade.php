@@ -150,7 +150,6 @@
         $(document).ready(function() {
             var timer = setInterval(checkPings, 30000);
             checkPings();
-
             function checkPings() {
                 routers = document.getElementsByName("router");
                 for (let i = 0; i < router.length; i++) {
@@ -190,12 +189,9 @@
                                 console.log(error);
                             }
                         })
-
-
                     }
                 }
             }
-
         });
     </script>
 @endsection

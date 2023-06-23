@@ -34,7 +34,7 @@
                                     <!-- materiel type -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materiel_type" class=" form-control-label">type material</label>
+                                            <label for="materiel_type" class=" form-control-label">type de matériel</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="materiel_type" id="materielType" class="form-control">
@@ -129,7 +129,7 @@
                                     <!-- etat -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="état" id="état" class=" form-control-label">état de materiel</label>
+                                            <label for="état" id="état" class=" form-control-label">état de matériel</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="état" id="aétat" class="form-control">
@@ -143,7 +143,7 @@
 
                                     <!-- port -->
                                     <div class="alert alert-primary" role="alert">
-                                        l'ajout des port avec les address mac et ip dans la modification du materiel apres leur creation
+                                        l'ajout des ports avec les adresses Mac et Ip dans la modification du matériel après leur création
                                     </div>
 
 

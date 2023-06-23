@@ -8,7 +8,7 @@
                     <div class="col-lg-10">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">l'acquisition annual de materiel</h3>
+                                <h3 class="title-2 m-b-40">L'acquisition Annual de matériel</h3>
                                 <canvas id="AAM"></canvas>
                             </div>
                         </div>
@@ -17,7 +17,7 @@
                     <div class="col-lg-10" style="margin-left: auto;">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">nombre de materiel par type</h3>
+                                <h3 class="title-2 m-b-40">nombre de matériel par type</h3>
                                 <canvas id="NMT"></canvas>
                             </div>
                         </div>
@@ -26,7 +26,7 @@
                     <div class="col-lg-10">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">materiel par division</h3>
+                                <h3 class="title-2 m-b-40">nombre de matériel par division</h3>
                                 <canvas id="MPD"></canvas>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                     <div class="col-lg-10" style="margin-left: auto;">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">nombre de materiel par état</h3>
+                                <h3 class="title-2 m-b-40">nombre de matériel par état</h3>
                                 <canvas id="NME"></canvas>
                             </div>
                         </div>

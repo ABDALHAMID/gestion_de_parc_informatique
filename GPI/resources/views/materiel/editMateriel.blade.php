@@ -36,7 +36,7 @@
 
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materiel_type" class=" form-control-label">materiel Type</label>
+                                            <label for="materiel_type" class=" form-control-label">type de matériel</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="materiel_type" id="materielType" class="form-control" @selected(true)>
@@ -54,7 +54,7 @@
                                     <!-- materiel marque -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materielMarque" class=" form-control-label">materiel marque</label>
+                                            <label for="materielMarque" class=" form-control-label">marque</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="marque" id="materielMarque" class="form-control">
@@ -72,7 +72,7 @@
                                     <!-- materiel modele -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="materielModele" class=" form-control-label">materiel modele</label>
+                                            <label for="materielModele" class=" form-control-label">modèle</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="modèle" id="materielModele" class="form-control">
@@ -151,7 +151,7 @@
                                     <!-- etat -->
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label for="état" id="état" class=" form-control-label">état de materiel</label>
+                                            <label for="état" id="état" class=" form-control-label">état</label>
                                         </div>
                                         <div class="col-12 col-md-9">
                                             <select name="état" id="aétat" class="form-control">

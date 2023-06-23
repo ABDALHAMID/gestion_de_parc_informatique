@@ -47,7 +47,7 @@
                                 <!-- materiel type -->
                                 <div class="form-group">
                                     <div class="col">
-                                        <label for="materiel_type" class=" form-control-label">materiel Type</label>
+                                        <label for="materiel_type" class=" form-control-label">type de matériel</label>
                                     </div>
                                     <div class="col-12">
                                         <select name="materiel_type" id="materielType" class="form-control">
@@ -62,7 +62,7 @@
                                 <!-- materiel marque -->
                                 <div class="form-group">
                                     <div class="col ">
-                                        <label for="materielMarque" class=" form-control-label">materiel marque</label>
+                                        <label for="materielMarque" class=" form-control-label">marque</label>
                                     </div>
                                     <div class="col-12">
                                         <select name="marque" id="materielMarque" class="form-control">
@@ -77,7 +77,7 @@
                                 <!-- materiel modele -->
                                 <div class="form-group">
                                     <div class="col ">
-                                        <label for="materielModele" class=" form-control-label">materiel modele</label>
+                                        <label for="materielModele" class=" form-control-label">modele</label>
                                     </div>
                                     <div class="col-12">
                                         <select name="modèle" id="materielModele" class="form-control">
@@ -151,8 +151,7 @@
                                 <!-- etat -->
                                 <div class="form-group">
                                     <div class="col ">
-                                        <label for="état" id="état" class=" form-control-label">état de
-                                            materiel</label>
+                                        <label for="état" id="état" class=" form-control-label">état</label>
                                     </div>
                                     <div class="col-12">
                                         <select name="état" id="aétat" class="form-control">
@@ -270,7 +269,6 @@
         });
     </script>
     <script>
-        var r = ''
         $(document).ready(function() {
             // Function to update the material list
             function updateMaterialList() {

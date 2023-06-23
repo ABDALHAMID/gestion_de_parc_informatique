@@ -22,8 +22,6 @@ class MaterielFactory extends Factory
         $marque = Marque::where('materiel_type', $materielType)->inRandomOrder()->first();
         $modele = Modèle::where('marque', $marque->id)->inRandomOrder()->first();
         if($modele == null)$modele = 1;
-
-
         return [
             'materiel_type' => $materielType,
             'marque' => $marque,
@@ -34,7 +32,6 @@ class MaterielFactory extends Factory
             'caractéristiques' => fake()->numerify('ram: ## GB, disque: ### GB, prossesor: i# #520k, cart graphique: rtx ####'),
             'date_aqusition' => fake()->dateTimeBetween('2007-01-01', 'now')->format('Y-m-d'),
             'état' => fake()->randomElement(['très bon','bien','moyen','mauvais', 'hors service', 'mantenance']),
-
         ];
     }
 }

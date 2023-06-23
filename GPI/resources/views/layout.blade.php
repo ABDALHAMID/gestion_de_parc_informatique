@@ -67,7 +67,7 @@
                         </li>
                         <li>
                             <a href="{{ route('listMateriel') }}">
-                                <i class="fas fa-table"></i>liste de materiel</a>
+                                <i class="fas fa-table"></i>liste de matériels</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="{{ route('monitoring') }}">
@@ -102,7 +102,7 @@
                         </li>
                         <li>
                             <a href="{{ route('listMateriel') }}">
-                                <i class="fas fa-table"></i>liste des materiel</a>
+                                <i class="fas fa-table"></i>liste des matériels</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="{{ route('monitoring') }}">
